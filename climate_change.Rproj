@@ -1,13 +1,16 @@
-Version: 1.0
+# This is a comment and will not affect the code execution
 
-RestoreWorkspace: Default
-SaveWorkspace: Default
-AlwaysSaveHistory: Default
+Version: 1.1  # Updated version number for better tracking
 
-EnableCodeIndexing: Yes
-UseSpacesForTab: Yes
-NumSpacesForTab: 2
-Encoding: UTF-8
+RestoreWorkspace: No  # Set to 'No' to prevent restoring the workspace automatically
+SaveWorkspace: No   # Set to 'No' to prevent saving the workspace automatically
+AlwaysSaveHistory: Yes  # Set to 'Yes' to always save the history
 
-RnwWeave: Sweave
-LaTeX: pdfLaTeX
+EnableCodeIndexing: Yes  # Set to 'Yes' to enable code indexing
+UseSpacesForTab: Yes  # Set to 'Yes' to use spaces instead of tabs
+NumSpacesForTab: 2  # Set the number of spaces for indentation
+Encoding: UTF-8  # Set the encoding to UTF-8 for better compatibility
+
+RnwWeave: Tangle  # Changed to 'Tangle' to make it more explicit
+LaTeX: pdfLaTeX  # No change needed as it's already set to the most common option
+
