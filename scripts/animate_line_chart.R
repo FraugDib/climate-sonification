@@ -4,16 +4,31 @@ library(showtext)
 
 font_add_google(name = "Open Sans", family = "open-sans")
 showtext_auto()
+
+line_params <- list(
+  colour = c("white", "#f4c907", "#f45207", "red"),
+  size = c(5, 3, 1.5, 1),
+  alpha = c(0.3, 0.5, 0.7, 1)
+)
+
+point_params <- list(
+  colour = c("white", "#f4c907", "#f45207", "red"),
+  size = c(8, 6, 4, 2),
+  alpha = c(0.3, 0.5, 0.7, 1)
+)
+
 anim_chart <- ggplot(data = temp_change) +
-  geom_line(aes(x = Year, y = lowess_temp, group = geo),colour='white',size = 5, alpha=0.3) +
-  geom_line(aes(x = Year, y = lowess_temp, group = geo),colour='#f4c907',size = 3, alpha=0.5) +
-  geom_line(aes(x = Year, y = lowess_temp, group = geo),colour = "#f45207",size = 1.5, alpha=0.7) +
-  geom_line(aes(x = Year, y = lowess_temp, group = geo),colour= "red", size = 1, alpha = 1) +
-  geom_point(aes(x = Year, y = lowess_temp),colour='white', size = 8, alpha = 0.3) +
-  geom_point(aes(x = Year, y = lowess_temp) ,colour='#f4c907', size = 6, alpha = 0.5) +
-  geom_point(aes(x = Year, y = lowess_temp) ,colour='#f45207', size = 4, alpha = 0.7) +
-  geom_point(aes(x = Year, y = lowess_temp) ,colour='red', size = 2, alpha = 1) +
-  labs(y = "Degrees Celsius Difference", title = "Global Temperature - Annual Difference\nfrom the 1951 - 1980 Mean", caption = "Data: NASA | audio/visualisation: @northernjamie") +
+  geom_line(aes(x = Year, y = lowess_temp, group = geo),
+             color = line_params$colour,
+             size = line_params$size,
+             alpha = line_params$alpha) +
+  geom_point(aes(x = Year, y = lowess_temp),
+             color = point_params$colour,
+             size = point_params$size,
+             alpha = point_params$alpha) +
+  labs(y = "Degrees Celsius Difference",
+       title = "Global Temperature - Annual Difference\nfrom the 1951 - 1980 Mean",
+       caption = "Data: NASA | audio/visualisation: @northernjamie") +
   theme_minimal() +
   theme(legend.position = 'none',
         plot.background = element_rect(colour = 'black',
@@ -35,6 +50,6 @@ anim_chart <- ggplot(data = temp_change) +
                                   family = 'open-sans'),) +
   transition_reveal(Year)
 
-animate(anim_chart,nframes = nrow(temp_change), fps = 4, width = 16, height = 9, units = 'cm', res = 150)
+animate(anim_chart, nframes = nrow(temp_change), fps = 4, width = 16, height = 9, units = 'cm', res = 150)
 
 anim_save(file = 'tempoutput/animate_line_4fps.gif')
