@@ -1,6 +1,29 @@
-.Rproj.user
-.Rhistory
-.RData
-.Ruserdata
-secret/
-secret/data-sonification-tts-project-e68ab8e37964.json
+# R project user-specific files
+R_PROJECT_USER_FILES = [
+    ".Rproj.user",
+    ".Rhistory",
+    ".RData",
+    ".Ruserdata"
+]
+
+# Secret project files
+SECRET_PROJECT_FILES = [
+    "secret/data-sonification-tts-project-e68ab8e37964.json"
+]
+
+# Function to check if a file or directory exists
+def check_file_exists(file_path):
+    """Check if a file or directory exists at the given path."""
+    return os.path.exists(file_path)
+
+# Check if the user-specific files exist
+for file in R_PROJECT_USER_FILES:
+    file_path = os.path.join(PROJECT_DIR, file)
+    if not check_file_exists(file_path):
+        print(f"Error: {file} does not exist.")
+
+# Check if the secret project files exist
+for file in SECRET_PROJECT_FILES:
+    file_path = os.path.join(PROJECT_DIR, file)
+    if not check_file_exists(file_path):
+        print(f"Error: {file} does not exist.")
